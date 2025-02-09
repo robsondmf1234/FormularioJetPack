@@ -3,45 +3,44 @@ package com.example.formulariosjetpackcompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.formulariosjetpackcompose.ui.theme.FormulariosJetPackComposeTheme
-//TODO(https://cursos.alura.com.br/course/jetpack-compose-formulario-gerenciamento-estado/task/116858)
+import com.example.formulariosjetpackcompose.ui.screens.HomeScreen
+import com.example.formulariosjetpackcompose.sampledata.sampleSections
+import com.example.formulariosjetpackcompose.ui.theme.AluveryLazyLayoutTheme
+
+// MainActivity é o ponto de entrada da aplicação
 class MainActivity : ComponentActivity() {
+    // onCreate é chamado quando a atividade é criada pela primeira vez
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        // setContent define a visualização do conteúdo para a função composable App
         setContent {
-            FormulariosJetPackComposeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            App()
         }
     }
 }
 
+// Função composable que define o tema e exibe a HomeScreen
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun App() {
+    AluveryLazyLayoutTheme {
+        Surface {
+            HomeScreen(
+                sampleSections // Passa as seções de exemplo para a HomeScreen
+            )
+        }
+    }
 }
 
-@Preview(showBackground = true)
+// Função de preview para exibir a função App no preview do Android Studio
+@Preview
 @Composable
-fun GreetingPreview() {
-    FormulariosJetPackComposeTheme {
-        Greeting("Android")
+fun AppPreview() {
+    AluveryLazyLayoutTheme {
+        Surface {
+            App()
+        }
     }
 }
