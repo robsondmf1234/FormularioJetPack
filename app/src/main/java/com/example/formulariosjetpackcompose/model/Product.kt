@@ -3,7 +3,7 @@ package com.example.formulariosjetpackcompose.model
 import java.math.BigDecimal
 
 // Classe que representa um produto
-class Product(
+data class Product(
     // Nome do produto
     val name: String,
     // Preço do produto
