@@ -1,6 +1,7 @@
 package com.example.formulariosjetpackcompose.ui.activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
@@ -22,7 +23,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.formulariosjetpackcompose.model.Product
 import com.example.formulariosjetpackcompose.ui.theme.AluveryLazyLayoutTheme
+import java.math.BigDecimal
 
 //TODO("https://cursos.alura.com.br/course/jetpack-compose-formulario-gerenciamento-estado/task/116679")
 class ProductFormActivity : ComponentActivity() {
@@ -108,7 +111,21 @@ fun ProductFormScreen() {
                 Text("Description")
             },
         )
-        Button(onClick = { /*TODO*/ }, Modifier.fillMaxWidth()) {
+        Button(onClick = {
+            val convertedPrice = try {
+                price.toBigDecimal()
+            } catch (e: NumberFormatException) {
+                BigDecimal.ZERO
+            }
+
+            val product = Product(
+                name = name,
+                price = convertedPrice,
+                image = url,
+                description = description
+            )
+            Log.i("ProductFormScreen", "ProductFormScreen: $product")
+        }, Modifier.fillMaxWidth()) {
             Text(text = "Salvar")
         }
     }
