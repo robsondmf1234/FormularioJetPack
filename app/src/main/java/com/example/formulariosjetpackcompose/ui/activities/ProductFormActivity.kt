@@ -1,5 +1,6 @@
 package com.example.formulariosjetpackcompose.ui.activities
 
+import android.icu.text.DecimalFormat
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -28,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -109,7 +111,8 @@ fun ProductFormScreen() {
                 Text("Name")
             }, keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Uri,
-                imeAction = ImeAction.Next
+                imeAction = ImeAction.Next,
+                capitalization = KeyboardCapitalization.Words
             )
         )
 
@@ -143,7 +146,8 @@ fun ProductFormScreen() {
             label = {
                 Text("Description")
             }, keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text
+                keyboardType = KeyboardType.Text,
+                capitalization = KeyboardCapitalization.Sentences
             )
         )
         Button(onClick = {
